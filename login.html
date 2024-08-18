@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Playwrite+BE+VLG&family=Poppins&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="loginpage.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="outer">
+        <div class="one">
+            <a href="index.html"><h2 class="heading">Aspiring Voyage</h2></a>
+            <p class="welcome">Welcome Back!</p>
+            <p class="para">To   Keep   Connected  with  us  please <br> login  with  tour  personal  info</p>
+            <a href="signup.html"><button class="sign">Sing up</button></a>  
+        </div>  
+        <div class="two">
+            <h1 class="title media">Aspiring Voyage</h1>
+            <p class="paragraph media">Log in to access your personal shopping account.Your shopping experience starts here!</p>
+            <h1 class="right-heading">Login</h1>
+            <div class="form-sec">
+        <form class="form" name="submit-to-google-sheet" >
+            <input type="hidden" name="access_key" value="8555a57b-9bed-4a4b-881c-a19a62b9b377">
+            <input type="text" name="username" class="input input1" required placeholder="Username">
+            <input type="text" name="email" class="input" required placeholder="Email">
+            <input type="password" name="password" class="input" required  placeholder="Password">
+            <button type="submit" class="btn">Sign in</button>
+        </form>
+            <p class="extra">Create a new account <a href="signup.html">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyMVhho6VZlLnFmJbrw69hv5gXod4GCtywfN6Qp-owkp-rTq5O3f0aCe_P_AERIApfA/exec'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
