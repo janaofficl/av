@@ -6,7 +6,8 @@ let products=[
         star:3.5,
         count:86
     },
-    priceCents:1090
+    priceCents:1090,
+    quantity:1
 },
 {
     image:'plain-hooded-fleece-sweatshirt-yellow.jpg',
@@ -15,7 +16,8 @@ let products=[
         star:4,
         count:46
     },
-    priceCents:846
+    priceCents:846,
+    quantity:2
 },
 { image:'umbrella.jpg',
     name:'umbrella',
@@ -200,7 +202,41 @@ products.forEach((product)=>{
                             <option value="">10</option>
                         </select>
                     </div>
-                    <button class="add-to-cart-btn">Add to cart</button>
+                    <button class="add-to-cart-btn js-btn" data-product-name="${product.name}">Add to cart</button>
                 </div>`
 })
 document.querySelector('.js-grid').innerHTML=productsHTML;
+const cart1=[];
+function addToCart(productName){
+    let matchingItem;
+        cart1.forEach((cartItem) => {
+            if(productName === cartItem.productName){
+                matchingItem=cartItem;
+            }
+        });
+        if(matchingItem){
+            matchingItem.quantity+=1
+        }
+        else{
+            cart1.push({
+                productName:productName,
+                quantity:1 
+               })
+        }
+}
+
+function updateqty(){
+    let cartQuantity = 0;
+    cart1.forEach((item) => {
+        cartQuantity += item.quantity
+    })
+    document.getElementById('cart-qty').innerHTML=cartQuantity;
+}
+
+document.querySelectorAll('.js-btn').forEach((button) => {
+    button.addEventListener('click',() => {
+       const productName=button.dataset.productName;
+       addToCart(productName);
+       updateqty();
+    })
+})
